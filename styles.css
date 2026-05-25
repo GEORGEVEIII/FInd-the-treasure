@@ -1,0 +1,214 @@
+:root {
+    --bg-color: #0b1320; /* Dark sea blue */
+    --card-bg: #1c2b42;
+    --card-back: #d4af37; /* Gold */
+    --accent: #ff4757; /* Red accent for pirate theme */
+    --text-main: #f1f2f6;
+    --font-title: 'Pirata One', system-ui;
+    --font-ui: 'Inter', sans-serif;
+    --transition: 0.4s ease-in-out;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: var(--font-ui);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: radial-gradient(circle at center, #15243b 0%, #0b1320 100%);
+}
+
+.game-container {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+h1 {
+    font-family: var(--font-title);
+    font-size: 4rem;
+    color: var(--card-back);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+.stats {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+}
+
+.stat-box {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-align: center;
+    min-width: 100px;
+}
+
+.stat-box span {
+    display: block;
+    font-size: 0.8rem;
+    color: #a0a0a0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stat-box strong {
+    font-size: 1.5rem;
+    color: var(--card-back);
+}
+
+.btn {
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-family: var(--font-ui);
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.btn:hover {
+    background-color: #ff6b81;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(255, 71, 87, 0.3);
+}
+
+/* Grid */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    perspective: 1000px;
+}
+
+.card {
+    aspect-ratio: 3/4;
+    position: relative;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card.matched {
+    transform: rotateY(180deg) scale(0.95);
+    opacity: 0.8;
+    cursor: default;
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.card-back {
+    background: linear-gradient(135deg, var(--card-back) 0%, #a88222 100%);
+    color: #111;
+    border: 2px solid #ffeba1;
+}
+
+.card-back i {
+    opacity: 0.8;
+}
+
+.card-front {
+    background-color: var(--card-bg);
+    border: 2px solid var(--card-back);
+    transform: rotateY(180deg);
+    color: var(--text-main);
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-content {
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    border: 2px solid var(--card-back);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+
+.modal-content h2 {
+    font-family: var(--font-title);
+    font-size: 3rem;
+    color: var(--card-back);
+    margin-bottom: 10px;
+}
+
+.modal-content p {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+    h1 { font-size: 3rem; }
+    .card-face { font-size: 2rem; }
+    .grid-container { gap: 10px; }
+}

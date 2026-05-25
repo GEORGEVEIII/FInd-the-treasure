@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find the Treasure - One Piece Memory Game</title>
+    <!-- Use a fun pirate font like Pirata One and standard UI font Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <header>
+            <h1>Find the Treasure</h1>
+            <div class="stats">
+                <div class="stat-box">
+                    <span>Moves</span>
+                    <strong id="moves">0</strong>
+                </div>
+                <div class="stat-box">
+                    <span>Matches</span>
+                    <strong id="matches">0 / 8</strong>
+                </div>
+            </div>
+            <button id="restart-btn" class="btn"><i class="fa-solid fa-rotate-right"></i> Restart Game</button>
+        </header>
+
+        <main>
+            <div class="grid-container" id="grid">
+                <!-- Cards will be generated here by JS -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Win Modal -->
+    <div class="modal-overlay" id="win-modal">
+        <div class="modal-content">
+            <h2>Bounty Claimed!</h2>
+            <p>You found all the treasure in <span id="final-moves">0</span> moves!</p>
+            <button id="play-again-btn" class="btn">Play Again</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
